@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/utils.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <title>Your - Blogs</title>
+</head>
+<body>
+    <nav class="navigation max-width-1 m-auto">
+        <div class="nav-left">
+            <span>Yblog</span>
+            
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/post">Write a post</a></li>
+            <li><a href="/">Contact</a></li>
+        </ul>    
+        
+        </div>
+        <div class="nav-right">
+            <input class = "form-input" type="text" placeholder="search here">
+            <button class="btn">Search</button>
+        </div>
+
+    </nav>
+    <div class="content max-width-1 m-auto">
+        <div class="content-left">
+            <h1>Bloggers adda</h1>
+            <p>Your blogger is a website which lets you submit an blog which will be on your profile and you can get good reach and likes from here.
+            </p>
+            <p>Anyone can write on Your Blogs. Thought-leaders, journalists, experts,
+                 and individuals with unique perspectives share their thinking here. You’ll find pieces by independent writers from around the globe, 
+                stories we feature and leading authors, and smart takes on our own suite of blogs and publications.</p>
+
+        </div>
+        <div class="content-right">
+            <img src="https://raw.githubusercontent.com/yaditya18/blog/main/home.jpg" alt="Yblog">
+
+        </div>
+        
+    </div>
+    <div class="max-width-1 m-auto"><hr></div>
+    <div class="home-articles max-width-1 m-auto font2">
+        <h2>Recent articles</h2>
+        <%blogs.forEach((blog)=>{%>
+            <a href="post/<%=blog._id%>" ><div class="home-article" >
+               <div class="home-article-img">
+                  <img src="uploads/<%=blog.image%>" alt="article">
+               </div>
+               <div class="home-article-content font1">
+                  <h3><%=blog.desc%></h3>
+                  <span><%=blog.username%></span>
+                  <span><%=blog.createdAt.toJSON().slice(0,10)%></span>
+               </div>
+               
+            </div>
+         </a>
+         <%})%>
+        
+    </div>
+    
+    
+    <div class="footer ">
+        <p>Copyright &copy; YourBlogs.com</p>
+        <a href="https://www.vecteezy.com/free-vector/blog">Vector Credits : Vecteezy</a>
+
+    </div>
+</body>
+</html>
