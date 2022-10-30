@@ -1,7 +1,7 @@
 import { Router } from "express"
 const router=Router()
 import User from "../models/user.js"
-import bcrypt from "bcrypt"
+import bcryptjs from "bcryptjs"
 
 router.post("/register",async (req,res)=>{
     console.log("register routes entry")
@@ -20,8 +20,8 @@ router.post("/register",async (req,res)=>{
     }
     try{
         
-        const salt=await bcrypt.genSalt(10);
-        const hashPass=await bcrypt.hash(req.body.password,salt)
+        const salt=await bcryptjs.genSalt(10);
+        const hashPass=await bcryptjs.hash(req.body.password,salt)
 
         const newUser=new User({
             username:req.body.username,
@@ -57,7 +57,7 @@ router.post("/login",async (req,res)=>{
     }
     try{
         
-        const validate=await bcrypt.compare(req.body.password,check.password);
+        const validate=await bcryptjs.compare(req.body.password,check.password);
 
         if(validate)
         {
