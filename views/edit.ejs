@@ -1,0 +1,33 @@
+<%- include("partials/header"); %>
+<link rel="stylesheet" href="../../css/style.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/tinymce/4.5.1/tinymce.min.js"></script>
+    <div class="container" style="margin: 20px;">
+
+        <form action="<%=blog._id%>" method="post">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" name="title" id="Title" class="form-control" id="exampleFormControlInput1"
+                    value="<%=blog.title%>" placeholder="name@example.com">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                <textarea class="form-control" name="desc" id="exampleFormControlTextarea1" 
+                    rows="8">
+                    <%=blog.desc%>
+                </textarea>
+            </div>
+            <div>
+                <button type="submit"
+                    class="bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- JavaScript Bundle with Popper -->
+
+
+    <script>
+        tinymce.init({ selector: 'textarea' });
+
+    </script>
+    <%- include("partials/footer"); %>

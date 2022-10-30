@@ -1,6 +1,7 @@
-const router=require("express").Router()
-const User=require("../models/user")
-const bcrypt=require('bcrypt')
+import { Router } from "express"
+const router=Router()
+import User from "../models/user.js"
+import bcrypt from "bcrypt"
 
 router.post("/register",async (req,res)=>{
     console.log("register routes entry")
@@ -63,7 +64,7 @@ router.post("/login",async (req,res)=>{
             req.session.email=check.email
             req.session.username=check.username
            
-            res.status(200).render('index')
+            res.redirect("/")
         }
         else
         {
@@ -74,5 +75,5 @@ router.post("/login",async (req,res)=>{
         res.status(500).send(err)
     }
 })
-
-module.exports=router
+export default router
+// module.exports=router

@@ -1,86 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
+<html>
+  <head>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iBlogs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font awesome icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="../css/blog.css">
+  </head>
+  <body>
 
-    <link rel="stylesheet" href="../css/utils.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/single-post.css">
-
-    <title>Post</title>
-</head>
-
-<body>
-    <nav class="navigation max-width-1 m-auto">
-        <div class="nav-left">
-            <span>Yblog</span>
-
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/">About</a></li>
-                <li><a href="/">Articles</a></li>
-                <li><a href="/">Contact</a></li>
-            </ul>
-
-        </div>
-        <div class="nav-right">
-            <input class="form-input" type="text" placeholder="search here">
-            <button class="btn">Search</button>
-        </div>
-
-    </nav>
-    <div class="post-img">
-        <img src="../uploads/<%=blog.image%>" alt="atl">
-    </div>
-    <div class="m-auto single-post-content max-width-2 m-auto">
-            <h1>
-                <%= blog.title %>
-            </h1>
-        <div id="text">
-            <%- blog.desc %>
-        </div>
-    </div>
-    <div class="max-width-1 m-auto">
-        <hr style="margin: 66px;">
-    </div>
-    <div class="home-articles max-width-1 m-auto font2">
-        <h2>People also read</h2>
-        <div class="row">
-            <% extra.forEach((post)=>{ %>
-                <a href="<%=post._id%>">
-
-                    <div class="home-article more-post ">
-                        <div class="home-article-img">
-                        <img src="../uploads/<%=post.image%>" alt="article">
-                    </div>
-                    <div class="home-article-content font1 center">
-                        <h3>
-                            <%=post.title%>
-                        </h3>
-                        <span>
-                            <%=post.username%>
-                        </span>
-                        <span>
-                            <%=post.createdAt.toJSON().slice(0,10)%>
-                        </span>
-                    </div>
-                </div>
-            </a>
-                <% }) %>
-        </div>
-    </div>
-
-
-    <div class="footer ">
-        <p>Copyright &copy; YourBlogs.com</p>
-        <a href="https://www.vecteezy.com/free-vector/blog">Vector Credits : Vecteezy</a>
-
-    </div>
-</body>
-<script>
+        <!-- header -->
+        <header1>
+          <nav class = "navbar">
+            <div class = "container">
+              <a href = "" class = "navbar-brand">iBlogs</a>
+              <div class = "navbar-nav">
+                <a href = "/">home</a>
+                <a href = "/post">Create</a>
+                <a href = "all-blogs.html">blogs</a>
+                <% if(login==0){ %>
+                  <a href="/login">login</a>
+                <% } else { %>
+                  <a href="/logout">logout</a>
+                <% } %>
+              </div>
+            </div>
+          </nav>
+        </header1>
+        <!-- end of header -->
+    <!-- about -->
     
-</script>
+          <div class = "about-content">
+            <div class = "title">
+              <h2><%=blog.title%></h2>
+              <b style="margin:10px;">Let's explore & Enjoy!</b>
+            </div>
+            <div>
+              <img class="check" src = "../uploads/<%=blog.image%>" alt = ""  style = "float:left;">
+            </div>
+            <div class = "about-text" >
+              <p><%-blog.desc%></p>                                                                                                 
+            </div>
+          </div>
+        </div>
+   
+      <!-- end of about -->
+
+
+    
+    
+  </body>
 </html>

@@ -1,15 +1,23 @@
-const express=require('express')
+
+import express  from "express";
 const app=express()
-require('dotenv').config()
 
-const sessions = require('express-session');
-const MongoDBStore=require("connect-mongodb-session")(sessions)
-const mongoose=require("mongoose")
-const authRoute=require("./routes/auth")
-const postRoute=require("./routes/posts")
-const Post=require("./models/post");
+import {stripHtml} from "string-strip-html"
+import dotenv from "dotenv";
+dotenv.config()
+import sessions from "express-session";
+import mongodbSession from "connect-mongodb-session"
+const MongoDBStore=mongodbSession(sessions)
+import mongoose from "mongoose";
 
+import authRoute from "./routes/auth.js"
+import postRoute from "./routes/posts.js"
+import Post from "./models/post.js"
 
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const oneDay = 1000 * 60 * 60 * 24;
 app.set('view engine','ejs')
@@ -54,12 +62,42 @@ app.get("/",async (req,res)=>{
     
     const blogs=await Post.find({});
     blogs.forEach((blog)=>{
-        blog.desc = blog.desc.replace(/<(.|\n)*?>/g, '');
+        blog.desc=stripHtml(blog.desc).result
         blog.desc=blog.desc.substring(0,Math.min(blog.desc.length,100))
     })
-    res.render("index",{blogs:blogs})
+    let login=0
+    if(req.session.email)
+    login=1
+    res.render("index",{blogs:blogs,login: login})
 })
-
+app.get("/",async (req,res)=>{
+    
+    const blogs=await Post.find({});
+    blogs.forEach((blog)=>{
+        blog.desc=stripHtml(blog.desc).result
+        blog.desc=blog.desc.substring(0,Math.min(blog.desc.length,100))
+    })
+    let login=0
+    if(req.session.email)
+    login=1
+    res.render("index",{blogs:blogs,login: login})
+})
+app.get("/profile",async (req,res)=>{
+    if(!req.session.email)
+    {
+        res.send('login First')
+        return;
+    }
+    const blogs=await Post.find({userid: req.session.email});
+    blogs.forEach((blog)=>{
+        blog.desc=stripHtml(blog.desc).result
+        blog.desc=blog.desc.substring(0,Math.min(blog.desc.length,100))
+    })
+    let login=0
+    if(req.session.email)
+    login=1
+    res.render("profile",{blogs:blogs,login: login})
+})
 app.get("/login",(req,res)=>{
     if(req.session.email)
     {

@@ -1,0 +1,41 @@
+<%- include('partials/header'); %>
+
+      
+    <!-- design -->
+    <section class = "design" id = "design">
+      <div class = "container">
+        <div class = "title">
+          <h2>Your Blogs</h2>
+          <p>Edit or preview</p>
+          <!--<p>Enjoy reading.</p> -->
+          
+        </div>
+
+        <div class = "design-content">
+          <!-- item -->
+          <%blogs.forEach((blog)=>{%>
+          <div class = "design-item">
+            <a href="post/edit/<%=blog._id%>"><button type="button" class="btn btn-info">Edit</button></a>
+            <a href="post/<%=blog._id%>">
+
+              <div class = "design-img">
+                
+                <img src = "uploads/<%=blog.image%>" alt = "">
+                <span><i class = "far fa-heart"></i> 22</span>
+                <span>iBlogs</span>
+              </div>
+              <div class = "design-title">
+                <%=blog.title%>
+              </div>
+            </a>
+          </div>
+          <!-- end of item -->
+          <%})%>
+        </div>
+      </div>
+    </section>
+    <!-- end of design -->
+
+
+
+   <%- include("partials/footer"); %>
