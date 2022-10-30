@@ -125,6 +125,6 @@ app.post("/logout",(req,res)=>{
     req.session.destroy()
     res.redirect("/")
 })
-app.listen(5000,(req,res)=>{
-    console.log("sever listening on 5000")
+app.listen(process.env.port || 5000,(req,res)=>{
+    console.log("sever listening on port")
 })
