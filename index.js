@@ -29,7 +29,7 @@ mongoose.connect( process.env.DB_URL,{
         console.log("Database Connected Succesfully")
     }
 ).catch(
-    (err)=>{console.log("error")}
+    (err)=>{console.log("Mongoose error")}
 )
 
 const store = new MongoDBStore({
